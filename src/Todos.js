@@ -10,15 +10,12 @@ class Todos extends Component
 
   render()
   {
-
-
     let items = this.props.data.todos.map((item,index)=>
     {
       return  <div key = {index} className = "App-Border-TodosAndPosts-Inner">
       Title: {item.title}<br/><br/>
       Completed: {item.completed.toString()}<br/>
     </div>
-
     })
 
 
