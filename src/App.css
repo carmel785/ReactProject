@@ -1,5 +1,18 @@
 .App {
-  text-align: center;
+  /* text-align: center; */
+  display: flex;
+  padding:20px;
+  justify-content: space-evenly;
+}
+
+.App2{
+  display: flex;
+  flex-direction: column;
+  /* padding:20px; */
+  justify-content: flex-start;
+  /* margin: auto; */
+  width: 30%;
+  padding: 10px;
 }
 
 .App-logo {
@@ -38,11 +51,10 @@
 }
 
 .App-Border {
-
   border: 2px solid black;
   border-radius: 35px;
-  margin: auto;
-  width: 50%;
+  /* margin: auto; */
+  width: 30%;
   padding: 10px;
 }
 .App-Border-User-Red{
@@ -67,4 +79,49 @@
   margin-top: 10px;
   border-radius: 10px;
 
+}
+
+.App-Border-User-Inner{
+  margin: auto;
+  width: 90%;
+  padding: 10px;
+  margin-top: 10px;
+}
+.App-Border-User-InnerGreen{
+  border: 2px solid green;
+  margin: auto;
+  width: 90%;
+  padding: 10px;
+  margin-top: 10px;
+  background-color: orange;
+}
+
+.App-Border-User-InnerRed{
+  border: 2px solid red;
+  margin: auto;
+  width: 90%;
+  padding: 10px;
+  margin-top: 10px;
+  background-color: orange;
+}
+
+.App-Border-TodosAndPosts{
+  /* border: 2px solid black; */
+  width: 100%;
+  padding: 10px;
+}
+
+/* .App-Border-Posts{
+  border: 2px solid black;
+  width: 30%;
+  padding: 10px;
+} */
+
+
+.App-Border-TodosAndPosts-Inner{
+  border: 2px solid black;
+  margin: auto;
+  width: 90%;
+  padding: 10px;
+  margin-top: 10px;
 }

@@ -1,24 +1,23 @@
 import './App.css';
 import React,{Component} from 'react' 
 import axios from 'axios'
+import {connect} from 'react-redux'
+
 class Users extends Component
 {
   constructor(props)
   {
     super(props)
-    this.state = {name: "", email: "", street: "", city: "", zipcode: ""}
+    this.state = {name: "", email: "", street: "", city: "", zipcode: "", idClicked: false}
   }
-
- 
 
   mouseOver(allUsers)
   {
     this.setState({street: allUsers.address.street})
     this.setState({city: allUsers.address.city})
     this.setState({zipcode: allUsers.address.zipcode})
-  
-    // // console.log(allUsers.name)
   }
+
   showDetails()
   {
     if(this.state.street !== "")
@@ -43,30 +42,50 @@ class Users extends Component
     .then(resp => console.log(resp.data))
   }
 
-
   handleDelete()
   {
     axios.delete("https://jsonplaceholder.typicode.com/users/"+this.props.allUsers.id)
     .then(resp => console.log(resp.data))
   }
 
+  selectingUser()
+  {
+    this.setState({idClicked: true})
+    // console.log(this.props.todos)
+
+    this.props.dispatch({
+                            type: 'ShowDetails',
+                            payload : {
+                              todos: this.props.todos,
+                              posts: this.props.posts
+                            }
+    })
+  }
+
   render()
   {
-    // console.log(this.props.isRed)
     let borderColor = ""
+    let innerColor = ""
     if(this.props.isRed === true)
     {
       borderColor = "App-Border-User-Red"
+      if(this.state.idClicked)
+      {
+        borderColor = "App-Border-User-InnerRed"
+      }
     }
     else{
       borderColor = "App-Border-User-Green"
+      if(this.state.idClicked)
+      {
+        borderColor = "App-Border-User-InnerGreen"
+      }
     }
-    
 
     return(
-      
       <div className = {borderColor}>
-        Id: {this.props.allUsers.id}<br/>
+      <div className = {innerColor}>
+        <div onClick = {this.selectingUser.bind(this)}>Id: {this.props.allUsers.id}</div><br/>
         Name: <input type = "text" placeholder = {this.props.allUsers.name} 
               onChange = {(e)=> this.setState({name: e.target.value})}/><br/>
         
@@ -78,9 +97,10 @@ class Users extends Component
         <input type = "button" value= "Update" onClick = {this.handleUpdate.bind(this)}/>
         <input type = "button" value= "Delete" onClick = {this.handleDelete.bind(this)}/>
       </div>
+      </div>
       
     )
   }
 }
 
-export default Users;
+export default connect()(Users);

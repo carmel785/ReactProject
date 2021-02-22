@@ -2,7 +2,9 @@ import logo from './logo.svg';
 import './App.css';
 import React,{Component} from 'react' 
 import Users from './Users'
-
+import Todos from './Todos'
+import Posts from './Posts'
+import Changer from './Changer'
 class App extends Component
 {
   constructor()
@@ -13,11 +15,13 @@ class App extends Component
   render()
   {
     return(
-      <div className="App">
-         
-        <h1>Users Management App</h1>
+      <div className = "App">
         <Users/>
-
+        <div className = "App2">
+          <Todos/>
+          <Posts/>
+        </div>
+        
       </div>
     )
   }

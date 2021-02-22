@@ -7,7 +7,7 @@ class Users extends Component
   constructor()
   {
     super()
-    this.state = {users: [], todos: []}
+    this.state = {users: [], todos: [], posts: []}
   }
 
   async componentDidMount() {
@@ -17,6 +17,9 @@ class Users extends Component
 
     var todos = await axios.get("https://jsonplaceholder.typicode.com/todos")
     this.setState({todos: todos.data})
+
+    var posts = await axios.get("https://jsonplaceholder.typicode.com/posts")
+    this.setState({posts: posts.data})
 }
 
 
@@ -27,8 +30,6 @@ class Users extends Component
       {
         if(x.name.startsWith(e.target.value))
         {
-          console.log(x)
-          console.log(e.target.value)
           arr.push(x)
         }
       })
@@ -48,8 +49,6 @@ class Users extends Component
             if(t.completed === false)
             {
               countRed += 1
-              // console.log(t)
-
             }
           }
         })
@@ -57,7 +56,11 @@ class Users extends Component
         {
           isRed = true 
         }
-      return <User key = {index} allUsers = {item} isRed = {isRed}/>
+
+        let userTodos = this.state.todos.filter(x=> x.userId === index+1)
+        let userPosts = this.state.posts.filter(x=> x.userId === index+1)
+
+      return <User key = {index} allUsers = {item} isRed = {isRed} todos = {userTodos} posts = {userPosts}/>
     })
     
     
