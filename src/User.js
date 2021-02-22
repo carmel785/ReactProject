@@ -6,7 +6,7 @@ class Users extends Component
   constructor(props)
   {
     super(props)
-    this.state = {street: "", city: "", zipcode: ""}
+    this.state = {name: "", email: "", street: "", city: "", zipcode: ""}
   }
 
  
@@ -32,6 +32,24 @@ class Users extends Component
     
   }
 
+  handleUpdate()
+  {
+    let chganges = {
+      "name" : this.state.name,
+      "email" : this.state.email,
+    }
+    //updating a specific field in the users json:
+    axios.patch("https://jsonplaceholder.typicode.com/users/"+this.props.allUsers.id, chganges)
+    .then(resp => console.log(resp.data))
+  }
+
+
+  handleDelete()
+  {
+    axios.delete("https://jsonplaceholder.typicode.com/users/"+this.props.allUsers.id)
+    .then(resp => console.log(resp.data))
+  }
+
   render()
   {
     // console.log(this.props.isRed)
@@ -49,12 +67,16 @@ class Users extends Component
       
       <div className = {borderColor}>
         Id: {this.props.allUsers.id}<br/>
-        Name: <input type = "text" placeholder = {this.props.allUsers.name} /><br/>
-        Email: <input type = "text" placeholder = {this.props.allUsers.email} /><br/><br/>
+        Name: <input type = "text" placeholder = {this.props.allUsers.name} 
+              onChange = {(e)=> this.setState({name: e.target.value})}/><br/>
+        
+        Email: <input type = "text" placeholder = {this.props.allUsers.email} 
+              onChange = {(e)=> this.setState({email: e.target.value})}/><br/><br/>
+
         <input type = "button" value= "Other Data" style={{backgroundColor: "grey"}} onMouseOver = {() => this.mouseOver(this.props.allUsers)} />
         {this.showDetails()}
-        <input type = "button" value= "Update" />
-        <input type = "button" value= "Delete" />
+        <input type = "button" value= "Update" onClick = {this.handleUpdate.bind(this)}/>
+        <input type = "button" value= "Delete" onClick = {this.handleDelete.bind(this)}/>
       </div>
       
     )
