@@ -18,6 +18,7 @@ class Todos extends Component
     }
   }
 
+    //if the user clicked on Mark completed Button
     change(indexPass)
     {
       this.props.data.todos.forEach((item,index)=>

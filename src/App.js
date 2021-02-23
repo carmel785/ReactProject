@@ -4,7 +4,6 @@ import React,{Component} from 'react'
 import Users from './Users'
 import Todos from './Todos'
 import Posts from './Posts'
-import Changer from './Changer'
 class App extends Component
 {
   constructor()
