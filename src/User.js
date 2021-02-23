@@ -51,13 +51,14 @@ class Users extends Component
   selectingUser()
   {
     this.setState({idClicked: true})
-    // console.log(this.props.todos)
+    // console.log(this.props.allUsers.id)
 
     this.props.dispatch({
-                            type: 'ShowDetails',
-                            payload : {
+                              type: 'ShowDetails',
+                              payload : {
                               todos: this.props.todos,
-                              posts: this.props.posts
+                              posts: this.props.posts,
+                              userId: this.props.allUsers.id
                             }
     })
   }

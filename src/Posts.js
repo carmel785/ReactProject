@@ -23,7 +23,7 @@ class Posts extends Component
     return(
       
       <div className = "App-Border-TodosAndPosts">
-      Posts - User <input type = "button" value = "Add" /><br/>
+      Posts - User {this.props.data.userId} <input type = "button" value = "Add" /><br/>
       <div className = "App-Border-TodosAndPosts-Inner">
       {items}
       </div>
