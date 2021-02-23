@@ -9,6 +9,15 @@ class Posts extends Component
     super(props)
   }
 
+  checkIdClicked()
+    {
+      if(this.props.data.userId !== "")
+      {
+        return true
+      }
+    }
+
+
   render()
   {
     let items = this.props.data.posts.map((item,index)=>
@@ -20,13 +29,19 @@ class Posts extends Component
 
     })
 
+    let checkClicked = this.checkIdClicked()
+
     return(
       
       <div className = "App-Border-TodosAndPosts">
-      Posts - User {this.props.data.userId} <input type = "button" value = "Add" /><br/>
-      <div className = "App-Border-TodosAndPosts-Inner">
-      {items}
-      </div>
+      {checkClicked ?
+      <div>
+        Posts - User {this.props.data.userId} <input type = "button" value = "Add" /><br/>
+        <div className = "App-Border-TodosAndPosts-Inner">
+          {items}
+        </div>
+      </div>: ""}
+      
       </div>
       
     )
