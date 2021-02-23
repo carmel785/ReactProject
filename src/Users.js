@@ -7,7 +7,7 @@ class Users extends Component
   constructor()
   {
     super()
-    this.state = {users: [], todos: [], posts: []}
+    this.state = {users: [], todos: [], posts: [], addClicked: false}
   }
 
   async componentDidMount() {
@@ -20,6 +20,7 @@ class Users extends Component
 
     var posts = await axios.get("https://jsonplaceholder.typicode.com/posts")
     this.setState({posts: posts.data})
+
 }
 
 
@@ -35,6 +36,14 @@ class Users extends Component
       })
     this.setState({users: arr})
   }
+
+  //on Add click it shows the add component it must be async for change the state in the same time it change
+  async addUser()
+  {
+    await this.setState({addClicked: true})
+    this.props.callback(this.state.addClicked)
+  }
+
 
   render()
   {
@@ -67,7 +76,7 @@ class Users extends Component
     return(
       <div className = "App-Border">
         Search <input type = "text" onChange = {this.find}/>
-        <input type = "button" value= "Add" />
+        <input type = "button" value= "Add" onClick = {(()=> this.addUser())}/>
         {itemsU}
       </div>
       

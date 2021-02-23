@@ -19,7 +19,7 @@ class Posts extends Component
       }
     }
 
-    addTodo()
+    addPost()
     {
       let newPost = {
         Title: this.state.newTitle,
@@ -43,7 +43,6 @@ class Posts extends Component
     })
 
     let checkClicked = this.checkIdClicked()
-
     return(
       
       <div className = "App-Border-TodosAndPosts">
@@ -55,7 +54,7 @@ class Posts extends Component
         Title: <input type = "text" onChange = {(e)=> this.setState({newTitle: e.target.value})}/><br/>
         Body: <input type = "text" onChange = {(e)=> this.setState({newBody: e.target.value})}/><br/>
         <button onClick = {() => this.setState({add: false})}>Cancel</button>
-        <button onClick = {()=> this.addTodo()}>Add</button>
+        <button onClick = {()=> this.addPost()}>Add</button>
           </div> : items} <br/>
         </div>
       </div>: ""}

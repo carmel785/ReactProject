@@ -12,7 +12,7 @@ class Todos extends Component
 
   checkIdClicked()
   {
-    if(this.props.data.userId !== "")
+    if(this.props.data.userId !== "" )
     {
       return true
     }
@@ -57,7 +57,6 @@ class Todos extends Component
     })
 
     let checkClicked = this.checkIdClicked()
-
     return(
       <div className = "App-Border-TodosAndPosts">
       {checkClicked ? <div>
